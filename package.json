@@ -1,17 +1,36 @@
 {
-  "name": "neon-arena",
-  "private": true,
+  "name": "esports-tournament-server",
   "version": "1.0.0",
+  "private": true,
+  "main": "src/index.js",
+  "type": "commonjs",
   "engines": {
     "node": ">=18"
   },
   "scripts": {
-    "setup": "npm --prefix server install && npm --prefix client install && node -e \"const fs=require('fs'); const p=require('path'); const sEnv=p.join('server','.env'); const sEx=p.join('server','.env.example'); if(!fs.existsSync(sEnv)&&fs.existsSync(sEx)) fs.copyFileSync(sEx,sEnv); const cEnv=p.join('client','.env'); const cEx=p.join('client','.env.example'); if(!fs.existsSync(cEnv)&&fs.existsSync(cEx)) fs.copyFileSync(cEx,cEnv);\"",
-    "dev": "concurrently -n SERVER,CLIENT -c magenta,cyan \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
-    "lint": "npm --prefix server run lint && npm --prefix client run lint"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "lint": "eslint .",
+    "seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "compression": "^1.8.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "express-rate-limit": "^8.1.0",
+    "helmet": "^7.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.2",
+    "morgan": "^1.10.0",
+    "neon-arena": "file:..",
+    "razorpay": "^2.9.6",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "@eslint/js": "^9.39.3",
+    "eslint": "^9.21.0",
+    "nodemon": "^3.1.10"
   }
 }
-
